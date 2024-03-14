@@ -70,7 +70,13 @@ config :valuebet_api, ValuebetApiWeb.Auth.Guardian,
   issuer: "valuebet_api",
   secret_key: "dg/4T/4kEN/mHPYw31poZrWxJhhgnqAqKCnZf+rgnRzVYtMquZRq+0cbC3Y8T0JM"
 
-#Oban Configs
+# Oban Configs
 config :valuebet_api, Oban,
   repo: ValuebetApi.Repo,
-  queues: [default: 10]
+  queues: [default: 10],
+  plugins: [
+    {Oban.Plugins.Cron,
+     crontab: [
+       {"* * * * *", ValuebetApi.GameManagement.Jobs.FetchGamesJob}
+     ]}
+  ]

@@ -12,7 +12,6 @@ defmodule ValuebetApi.Repo.Migrations.CreateBets do
 
       timestamps(type: :utc_datetime)
       add :deleted_at, :utc_datetime, default: nil
-
     end
   end
 end

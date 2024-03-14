@@ -32,5 +32,5 @@ config :logger, level: :warning
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
 
-#Oban Test connfig
-config :my_app, Oban, testing: :inline
+# Oban Test config
+config :valuebet_api, Oban, testing: :inline

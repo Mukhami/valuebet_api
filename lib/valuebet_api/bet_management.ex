@@ -18,9 +18,9 @@ defmodule ValuebetApi.BetManagement do
 
   """
   def list_bets do
-    Repo.all(Bet) |> Repo.preload([:user, :game])
+    query = from(b in Bet, order_by: [desc: b.id])
+    Repo.all(query) |> Repo.preload([:user, :game])
   end
-
 
   @doc """
   Returns the list of bets under a user.
@@ -34,8 +34,9 @@ defmodule ValuebetApi.BetManagement do
   def list_bets_for_user(user_id) do
     query =
       from b in Bet,
-      where: b.user_id == ^user_id,
-      order_by: [desc: b.id]
+        where: b.user_id == ^user_id,
+        order_by: [desc: b.id]
+
     Repo.all(query) |> Repo.preload([:user, :game])
   end
 

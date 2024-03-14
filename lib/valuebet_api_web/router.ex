@@ -31,8 +31,6 @@ defmodule ValuebetApiWeb.Router do
     resources "/bets", BetController, except: [:new, :edit]
 
     get "/bets/fetch-by-user/:user_id", BetController, :user_index
-
-
   end
 
   pipeline :browser do

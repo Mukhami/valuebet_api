@@ -13,7 +13,10 @@ defmodule Seeder do
     Enum.each(1..5, fn _ ->
       current_time = DateTime.utc_now() |> DateTime.truncate(:second)
       random_minutes = Enum.random(5..10)
-      scheduled_at = DateTime.add(current_time, random_minutes, :minute, Calendar.UTCOnlyTimeZoneDatabase)
+
+      scheduled_at =
+        DateTime.add(current_time, random_minutes, :minute, Calendar.UTCOnlyTimeZoneDatabase)
+
       home_team = "Team #{random_number(100, 999)}"
       away_team = "Team #{random_number(100, 999)}"
       home_odds = Float.round(:rand.uniform() * (3.0 - 1.0) + 1.0, 2)

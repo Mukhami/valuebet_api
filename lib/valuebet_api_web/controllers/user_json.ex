@@ -40,6 +40,6 @@ defmodule ValuebetApiWeb.UserJSON do
   defp roles(nil), do: []
 
   defp roles(roles) do
-    for role <- roles, into: %{}, do: {role.name, role.description}
+    for role <- roles, into: [], do: role.name
   end
 end

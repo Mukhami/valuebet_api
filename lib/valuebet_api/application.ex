@@ -19,9 +19,8 @@ defmodule ValuebetApi.Application do
       # Start to serve requests, typically the last entry
       ValuebetApiWeb.Endpoint,
 
-      #Oban
+      # Oban
       {Oban, Application.fetch_env!(:valuebet_api, Oban)}
-
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
