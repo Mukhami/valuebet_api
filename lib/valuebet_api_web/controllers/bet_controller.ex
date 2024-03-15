@@ -45,4 +45,10 @@ defmodule ValuebetApiWeb.BetController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  def fetch_bet_snapshot(conn, _params) do
+    snapshot = BetManagement.fetch_bet_snapshpot()
+    render(conn, :snapshot, snapshot: snapshot)
+  end
+
 end

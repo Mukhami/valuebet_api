@@ -29,7 +29,18 @@ config :valuebet_api, ValuebetApiWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :valuebet_api, ValuebetApi.Mailer, adapter: Swoosh.Adapters.Local
+
+#config :valuebet_api, ValuebetApi.Mailer, adapter: Swoosh.Adapters.Local
+
+# updated email config
+config :swoosh,
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "smtp.mailtrap.io",
+  username: "3a5945d02ae0b2",
+  password: "b99b9f7bbd7415",
+  port: 587,
+  tls: :always,
+  auth: :always
 
 # Configure esbuild (the version is required)
 config :esbuild,

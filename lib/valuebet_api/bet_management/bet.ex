@@ -10,6 +10,8 @@ defmodule ValuebetApi.BetManagement.Bet do
     field :won, :boolean, default: false
     field :amount, :float
     field :selection, :string
+    field :winnings, :float
+    field :result_status, :string
     timestamps(type: :utc_datetime)
 
     field :deleted_at, :utc_datetime, default: nil

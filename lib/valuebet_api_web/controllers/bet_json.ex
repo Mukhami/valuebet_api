@@ -17,6 +17,14 @@ defmodule ValuebetApiWeb.BetJSON do
     %{data: data(bet)}
   end
 
+  @doc """
+  Renders the bet snapshot data.
+  """
+  def snapshot(%{snapshot: snapshot}) do
+    %{data: snapshot}
+  end
+
+
   defp data(%Bet{} = bet) do
     %{
       id: bet.id,
@@ -28,6 +36,8 @@ defmodule ValuebetApiWeb.BetJSON do
       selection: bet.selection,
       status: bet.status,
       won: bet.won,
+      result_status: bet.result_status,
+      winnings: bet.winnings,
       inserted_at: bet.inserted_at
     }
   end

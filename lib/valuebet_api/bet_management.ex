@@ -120,4 +120,29 @@ defmodule ValuebetApi.BetManagement do
   def change_bet(%Bet{} = bet, attrs \\ %{}) do
     Bet.changeset(bet, attrs)
   end
+
+  @doc """
+  Caclulates the bet snapshot.
+  This is used to calculate the total number of bets, won bets, lost bets, cancelled bets etc.
+  """
+  def  fetch_bet_snapshpot() do
+    total_bets = Repo.aggregate(Bet, :count, :id)
+
+    won_bets_query = from(b in Bet, where: b.result_status == "won")
+    won_bets = Repo.aggregate(won_bets_query, :count, :id)
+
+    lost_bets_query = from(b in Bet, where: b.result_status == "lost")
+    lost_bets = Repo.aggregate(lost_bets_query, :count, :id)
+
+    cancelled_bets_query = from(b in Bet, where: b.status == false)
+    cancelled_bets = Repo.aggregate(cancelled_bets_query, :count, :id)
+
+    total_amount_placed_query = from(b in Bet, select: sum(b.amount))
+    total_amount_placed = Repo.one(total_amount_placed_query)
+
+    winnings_query = from(b in Bet, where: b.result_status == "won", select: sum(b.winnings))
+    winnings = Repo.one(winnings_query)
+
+    %{total_bets: total_bets, won_bets: won_bets, lost_bets: lost_bets, cancelled_bets: cancelled_bets, total_amount_placed: total_amount_placed,total_winnings: winnings}
+  end
 end
